@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gok.daohuai.mapper.TeacherMapper">
+    <insert id="insertTeacher">
+        insert into teacher(teacherName, password, realName, gender)
+        values ( #{teacherName}, #{password}, #{realName}, #{gender});
+    </insert>
+    <insert id="addStudent">
+        insert into student(passwd, realName,age,gender,phone,classId) values (#{phone}, #{passwd}, #{realName},#{gender},#{age},#{classId});
+    </insert>
+    <delete id="deleteStudent">
+        delete from student where stuId = #{stuId};
+    </delete>
+
+    <select id="getTeacherById" resultType="com.gok.daohuai.pojo.Teacher">
+        select *
+        from teacher
+        where teacherId = #{id};
+    </select>
+
+    <select id="getPasswordById" resultType="java.lang.String">
+        select password
+        from teacher
+        where teacherId = #{id};
+    </select>
+
+
+    <select id="checkTeacher" resultType="integer">
+        select count(*)
+        from teacher
+        where teacherName = #{teacherName};
+    </select>
+    <select id="showClass" resultType="com.gok.daohuai.pojo.Class">
+        SELECT classId, grade, major, college, class_leaderId, s_number
+        FROM teacher
+                 JOIN class
+        WHERE teacher.teacherId = class.teacherId
+          AND teacher.teacherId = #{teacherId};
+    </select>
+    <select id="showStudent">
+        select * from student where classId = #{classId} and stuId = #{stuId};
+    </select>
+
+    <!--    <insert id="insert">-->
+    <!--        insert into teacher values {}-->
+    <!--    </insert>-->
+</mapper>
