@@ -7,14 +7,15 @@
     <select id="checkTeacher" resultType="java.lang.Boolean">
         select count(*) from student where  classId = #{classId};
     </select>
-    <select id="login">
-        select * from student where stuId = #{stuId} and passwd = #{passwd};
-    </select>
+
     <select id="showById">
         select * from student where stuId = #{stuId};
     </select>
     <select id="showClass">
         select * from class where classId = #{classId};
+    </select>
+    <select id="login" resultType="com.gok.daohuai.pojo.Student">
+        select * from student where stuId = #{stuId} and passwd = #{passwd};
     </select>
 
     <update id="updateStudent">

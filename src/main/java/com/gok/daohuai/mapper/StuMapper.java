@@ -1,6 +1,10 @@
 package com.gok.daohuai.mapper;
 
+import com.gok.daohuai.pojo.Student;
 import com.gok.daohuai.pojo.Teacher;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author huai
@@ -11,7 +15,7 @@ public interface StuMapper {
 
     void checkTeacher(Teacher teacher);
 
-    void login(String stuId,String passwd);
+    List<Student> login(@Param("stuId") String stuId, @Param("passwd") String passwd);
 
     void showById(String stuId);
 

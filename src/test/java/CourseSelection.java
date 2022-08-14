@@ -22,6 +22,7 @@ public class CourseSelection {
         while (true){
             switch (sc.nextInt()){
                 case 1:
+                    new StuService().manage();
                     break;
                 case 2:
                     new TeacherService().manage();
