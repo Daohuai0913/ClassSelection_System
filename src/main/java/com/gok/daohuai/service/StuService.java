@@ -2,7 +2,6 @@ package com.gok.daohuai.service;
 
 import com.gok.daohuai.mapper.StuMapper;
 import com.gok.daohuai.pojo.Student;
-import com.gok.daohuai.pojo.Teacher;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -37,60 +36,58 @@ public class StuService {
         sqlSession.getMapper(StuMapper.class).updatePasswd(stuId, passwd);
     }
 
-    Student student = null;
+    public void showClass(String stuId) {
+        sqlSession.getMapper(StuMapper.class).showClass(stuId);
+    }
 
-//    public void manage() {
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("welcome to class selection system dear teacher");
-//        System.out.println("please choose your function");
-//        System.out.println("1.register");
-//        System.out.println("2.login");
-//        System.out.println("3.update your class information");
-//        System.out.println("4.show your class information");
-//        System.out.println("5.add student");
-//        System.out.println("6.delete student");
-//        System.out.println("7.show student information");
-//        System.out.println("8.update student information");
-//        System.out.println("9.quit");
-//        switch (sc.nextInt()) {
-//            case 1:
-//                System.out.println("please input your teacherId");
-//                student.setStudentId(sc.next());
-//                sc.next();
-//                System.out.println("please input your teacherName");
-//                student.set
-//                System.out.println("please input your password");
-//                setPassword(sc.next());
-//                System.out.println("please input your realname");
-//                setRealname(sc.next());
-//                new Teacher().register(teacherId,teacherName,password,realname);
-//
-//                break;
-//            case 2:
-//                break;
-//            case 3:
-//                break;
-//            case 4:
-//                break;
-//            case 5:
-//                break;
-//            case 6:
-//                break;
-//            case 7:
-//                break;
-//            case 8:
-//                break;
-//            case 9:
-//                System.out.println("quit");
-//                System.exit(0);
-//                break;
-//            default:
-//                System.out.println("please input 1,2,3,4,5,6,7,8,9");
-//                break;
-//        }
-//
-//
-//    }
+    Student student = new Student();
+
+    public void manage() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("welcome to class selection system dear teacher");
+        System.out.println("please choose your function");
+        System.out.println("1.login");
+        System.out.println("2.show your information");
+        System.out.println("3.change your password");
+        System.out.println("4.show your class information");
+        System.out.println("5.quit");
+        switch (sc.nextInt()) {
+            case 1:
+                System.out.println("please input your id");
+                String stuId = sc.next();
+                System.out.println("please input your password");
+                String passwd = sc.next();
+                login(stuId, passwd);
+
+                break;
+            case 2:
+                System.out.println("please input your id");
+                stuId = sc.next();
+                showById(stuId);
+                break;
+            case 3:
+                System.out.println("please input your id");
+                stuId = sc.next();
+                System.out.println("please input the password you want to change");
+                passwd = sc.next();
+                updatePasswd(stuId, passwd);
+                break;
+            case 4:
+                System.out.println("please input your id");
+                stuId = sc.next();
+                showClass(stuId);
+                break;
+            case 5:
+                System.out.println("quit");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("please input 1,2,3,4,5,6,7,8,9");
+                break;
+        }
+
+
+    }
 
 
 }

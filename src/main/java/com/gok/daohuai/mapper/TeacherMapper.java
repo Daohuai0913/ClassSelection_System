@@ -2,6 +2,7 @@ package com.gok.daohuai.mapper;
 
 import com.gok.daohuai.pojo.Class;
 import com.gok.daohuai.pojo.Teacher;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,10 +21,14 @@ public interface TeacherMapper {
 
     List<Class> showClass(int teacherId);
 
-    void addStudent(String passwd,String realName,String gender,String age,String phone,String classId);
+    void showClass2(@Param("teacherId") int teacherId, @Param("classId") int classId);
+
+    void addStudent(@Param("passwd") String passwd, @Param("realName") String realName, @Param("gender") String gender,@Param("age") String age, @Param("phone") String phone, @Param("classId") String classId);
 
     void showStudent(String classId,String stuId);
 
     void deleteStudent(String stuId);
+
+    List<Class> showYourClass(String teacherId);
 
 }

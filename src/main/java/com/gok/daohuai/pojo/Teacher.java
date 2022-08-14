@@ -24,6 +24,15 @@ public class Teacher {
         this.gender = gender;
     }
 
+    public Teacher(String teacherId, String teacherName, String password, String realName, String gender, String classId) {
+        this.teacherId = teacherId;
+        this.teacherName = teacherName;
+        this.password = password;
+        this.realName = realName;
+        this.gender = gender;
+        this.classId = classId;
+    }
+
     public String getClassId() {
         return classId;
     }

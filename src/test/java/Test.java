@@ -28,11 +28,16 @@ public class Test {
 //        sqlSession.getMapper(TeacherMapper.class).getTeacherById(1);
 //        System.out.println(sqlSession.getMapper(TeacherMapper.class).getTeacherById(1));
 
-        sqlSession.getMapper(TeacherMapper.class).showClass(1);
+//        sqlSession.getMapper(TeacherMapper.class).getTeacherById(1);
+//        System.out.println(sqlSession.getMapper(TeacherMapper.class).getTeacherById(1).getPassword());
+//        System.out.println(sqlSession.getMapper(TeacherMapper.class).getTeacherById(1).getTeacherId());
+        sqlSession.getMapper(TeacherMapper.class).showYourClass("1");
+        System.out.println(sqlSession.getMapper(TeacherMapper.class).showYourClass("1").get(0).getClassId());
+
     }
 
-    public static void main(String[] args) throws IOException {
-        TeacherService teacherService = new TeacherService();
-
-    }
+//    public static void main(String[] args) throws IOException {
+//        TeacherService teacherService = new TeacherService();
+//
+//    }
 }

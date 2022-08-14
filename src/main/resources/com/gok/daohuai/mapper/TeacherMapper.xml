@@ -6,13 +6,16 @@
 <mapper namespace="com.gok.daohuai.mapper.TeacherMapper">
     <insert id="insertTeacher">
         insert into teacher(teacherName, password, realName, gender)
-        values ( #{teacherName}, #{password}, #{realName}, #{gender});
+        values (#{teacherName}, #{password}, #{realName}, #{gender});
     </insert>
     <insert id="addStudent">
-        insert into student(passwd, realName,age,gender,phone,classId) values (#{phone}, #{realName},#{gender},#{age},#{phone},#{classId});
+        insert into student(passwd, realName, age, gender, phone, classId)
+        values (#{phone}, #{realName}, #{gender}, #{age}, #{phone}, 1);
     </insert>
     <delete id="deleteStudent">
-        delete from student where stuId = #{stuId};
+        delete
+        from student
+        where stuId = #{stuId};
     </delete>
 
     <select id="getTeacherById" resultType="com.gok.daohuai.pojo.Teacher">
@@ -34,14 +37,28 @@
         where teacherName = #{teacherName};
     </select>
     <select id="showClass" resultType="com.gok.daohuai.pojo.Class">
-        SELECT classId, grade, major, college, class_leaderId, s_number
+        SELECT class.classId, grade, major, college, class_leaderId, s_number
         FROM teacher
                  JOIN class
         WHERE teacher.teacherId = class.teacherId
           AND teacher.teacherId = #{teacherId};
     </select>
     <select id="showStudent">
-        select * from student where classId = #{classId} and stuId = #{stuId};
+        select *
+        from student
+        where classId = #{classId}
+          and stuId = #{stuId};
+    </select>
+    <select id="showClass2">
+        select *
+        from class
+        where classId = #{classId};
+    </select>
+
+    <select id="showYourClass" resultType="com.gok.daohuai.pojo.Class">
+        select *
+        from class
+        where teacherId = #{teacherId};
     </select>
 
     <!--    <insert id="insert">-->
