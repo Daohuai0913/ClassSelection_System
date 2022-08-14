@@ -7,7 +7,7 @@ import com.gok.daohuai.pojo.Teacher;
  * @date 2022/8/13
  */
 public interface StuMapper {
-    void updateStudent(String realName ,String phone);
+    void updateStudent(String realName ,String phone,String studentId);
 
     void checkTeacher(Teacher teacher);
 

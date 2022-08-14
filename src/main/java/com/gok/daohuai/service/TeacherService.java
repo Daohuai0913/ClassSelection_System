@@ -58,25 +58,27 @@ public class TeacherService {
         sqlSession.getMapper(TeacherMapper.class).showClass(Integer.parseInt(teacher.getTeacherId()));
     }
 
-    public void addStudent(Student student,String teacherId) {
-        sqlSession.getMapper(TeacherMapper.class).addStudent(student.getPhone(), student.getPhone(),student.getRealName(), student.getGender(), student.getAge(), teacherId);
+    public void addStudent(Student student) {
+        sqlSession.getMapper(TeacherMapper.class).addStudent(student.getPhone(), student.getPhone(),student.getRealName(), student.getGender(), student.getAge(), student.getClassId());
     }
 
-    public void updateStudent(Teacher teacher, Student student){
-        if (teacher.getClassId() == student.getClassId()){
-            sqlSession.getMapper(StuMapper.class).updateStudent(student.getRealName(), student.getPhone());
+    public void updateStudent(Teacher teacher, String realName, String phone,String studentId,String classId){
+        if (teacher.getClassId().contains(classId) ){
+            sqlSession.getMapper(StuMapper.class).updateStudent(realName, phone,studentId);
         }else {
             System.out.println("班级不一致");
         }
     }
 
-    public void showStudent(Teacher teacher, Student student){
-        sqlSession.getMapper(TeacherMapper.class).showStudent(teacher.getClassId(),student.getStudentId());
+    public void showStudent(Teacher teacher, String studentId){
+        sqlSession.getMapper(TeacherMapper.class).showStudent(teacher.getClassId(),studentId);
     }
 
-    public void deleteStudent(Teacher teacher, Student student){
-        sqlSession.getMapper(TeacherMapper.class).deleteStudent(student.getStudentId());
+    public void deleteStudent(String studentId){
+        sqlSession.getMapper(TeacherMapper.class).deleteStudent(studentId);
     }
+
+    Teacher teacher = new Teacher();
 
     public void manage() {
         Scanner sc = new Scanner(System.in);
@@ -93,30 +95,82 @@ public class TeacherService {
         System.out.println("9.quit");
         switch (sc.nextInt()) {
             case 1:
-                System.out.println("please input your teacherId");
-                setTeacherId(sc.next());
-                System.out.println("please input your teacherName");
-                setTeacherName(sc.next());
-                System.out.println("please input your password");
-                setPassword(sc.next());
-                System.out.println("please input your realname");
-                setRealname(sc.next());
-                new Teacher().register(teacherId,teacherName,password,realname);
+//                System.out.println("please input your teacherId");
 
+                System.out.println("please input your teacherName");
+                teacher.setTeacherName(sc.next());
+                System.out.println("please input your password");
+                teacher.setPassword(sc.next());
+                System.out.println("please input your realname");
+                teacher.setRealName(sc.next());
+                System.out.println("please input your gender");
+                teacher.setGender(sc.next());
+                register(teacher);
                 break;
             case 2:
+                System.out.println("please input your teacherId");
+                String id = sc.next();
+                teacher.setTeacherId(id);
+                System.out.println("please input your password");
+                teacher.setPassword(sc.next());
+                login(teacher);
                 break;
             case 3:
+                System.out.println("please input your teacherId");
+                teacher.setTeacherId(sc.next());
+                System.out.println("please input your classId");
+                teacher.setClassId(sc.next());
+                showClass(teacher);
                 break;
             case 4:
+                System.out.println("please input your teacherId");
+                teacher.setTeacherId(sc.next());
+                showClass(teacher);
                 break;
             case 5:
+                System.out.println("please input your teacherId");
+                teacher.setTeacherId(sc.next());
+                System.out.println("please input your student passwd");
+                String passwd = sc.next();
+                System.out.println("please input your student phone");
+                String phone = sc.next();
+                System.out.println("please input your student realname");
+                String realName = sc.next();
+                System.out.println("please input your student age");
+                String age = sc.next();
+                System.out.println("please input your student gender");
+                String gender = sc.next();
+                System.out.println("please input your student classId");
+                String classId = sc.next();
+                addStudent(new Student(passwd,realName,age,gender,phone,classId));
                 break;
             case 6:
+                System.out.println("please input your teacherId");
+                teacher.setTeacherId(sc.next());
+                System.out.println("please input your studentId");
+                String studentId = sc.next();
+                deleteStudent(studentId);
+
                 break;
             case 7:
+                System.out.println("please input your teacherId");
+                teacher.setTeacherId(sc.next());
+                System.out.println("please input your studentId");
+                String studentId2 = sc.next();
+                showStudent(teacher,studentId2);
                 break;
             case 8:
+                System.out.println("please input your teacherId");
+                teacher.setTeacherId(sc.next());
+                System.out.println("please input your studentId");
+                String studentId3 = sc.next();
+                System.out.println("please input your student realname");
+                String realName2 = sc.next();
+                System.out.println("please input your student phone");
+                String phone2 = sc.next();
+                System.out.println("please input your student classId");
+                String classId2 = sc.next();
+                updateStudent(teacher,realName2,phone2,studentId3,classId2);
                 break;
             case 9:
                 System.out.println("quit");

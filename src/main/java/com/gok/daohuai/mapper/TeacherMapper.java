@@ -20,7 +20,7 @@ public interface TeacherMapper {
 
     List<Class> showClass(int teacherId);
 
-    void addStudent(String passwd,String phone,String realName,String gender,String age,String teacherId);
+    void addStudent(String passwd,String realName,String gender,String age,String phone,String classId);
 
     void showStudent(String classId,String stuId);
 

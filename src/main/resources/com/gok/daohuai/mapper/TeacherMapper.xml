@@ -9,7 +9,7 @@
         values ( #{teacherName}, #{password}, #{realName}, #{gender});
     </insert>
     <insert id="addStudent">
-        insert into student(passwd, realName,age,gender,phone,classId) values (#{phone}, #{passwd}, #{realName},#{gender},#{age},#{classId});
+        insert into student(passwd, realName,age,gender,phone,classId) values (#{phone}, #{realName},#{gender},#{age},#{phone},#{classId});
     </insert>
     <delete id="deleteStudent">
         delete from student where stuId = #{stuId};

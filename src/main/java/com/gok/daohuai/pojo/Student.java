@@ -15,6 +15,18 @@ public class Student {
     private String phone;
     private String classId;
 
+    public Student() {
+    }
+
+    public Student(String passwd, String realName, String age, String gender, String phone, String classId) {
+        this.passwd = passwd;
+        this.realName = realName;
+        this.age = age;
+        this.gender = gender;
+        this.phone = phone;
+        this.classId = classId;
+    }
+
     public Student(String studentId, String passwd, String realName, String age, String gender, String phone, String classId) {
         this.studentId = studentId;
         this.passwd = passwd;
