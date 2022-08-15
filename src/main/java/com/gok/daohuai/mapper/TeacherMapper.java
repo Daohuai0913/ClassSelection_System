@@ -15,7 +15,7 @@ public interface TeacherMapper {
 
     String getPasswordById(Integer id);
 
-    void insertTeacher(String teacherName, String password,String realName,String gender);
+    void insertTeacher(@Param("teacherName") String teacherName,@Param("password") String password,@Param("realName") String realName,@Param("gender") String gender);
 
     int checkTeacher(String teacherName);
 
@@ -30,5 +30,7 @@ public interface TeacherMapper {
     void deleteStudent(String stuId);
 
     List<Class> showYourClass(String teacherId);
+
+    void updateClass(long classId);
 
 }

@@ -56,6 +56,10 @@ public class TeacherService {
 
     }
 
+    public void updateClass(Teacher teacher) {
+        sqlSession.getMapper(TeacherMapper.class).updateClass(Long.parseLong(teacher.getClassId()));
+    }
+
     public void register2(Teacher teacher) {
         sqlSession.getMapper(TeacherMapper.class).insertTeacher(teacher.getTeacherName(), teacher.getPassword(), teacher.getRealName(), teacher.getGender());
 
@@ -88,9 +92,9 @@ public class TeacherService {
         sqlSession.getMapper(TeacherMapper.class).deleteStudent(studentId);
     }
 
-    Teacher teacher = new Teacher();
 
     public void manage() {
+        Teacher teacher = new Teacher();
         while (true) {
             Scanner sc = new Scanner(System.in);
             System.out.println("welcome to class selection system dear teacher");
@@ -106,8 +110,6 @@ public class TeacherService {
             System.out.println("9.quit");
             switch (sc.nextInt()) {
                 case 1:
-//                System.out.println("please input your teacherId");
-
                     System.out.println("please input your teacherName");
                     teacher.setTeacherName(sc.next());
                     System.out.println("please input your password");
@@ -132,6 +134,7 @@ public class TeacherService {
                     System.out.println("please input your classId");
                     teacher.setClassId(sc.next());
                     showClass(teacher);
+                    updateClass(teacher);
                     break;
                 case 4:
                     System.out.println("please input your teacherId");

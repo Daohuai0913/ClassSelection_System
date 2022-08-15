@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <!--  开启自动驼峰命名规则映射  -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
 
     <typeAliases>
 <!--        给类起个别名-->
@@ -17,7 +21,7 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
 <!--                数据连接信息-->
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://ce2.huai0913.me/test?useSSl=false"/>
                 <property name="username" value="root"/>
                 <property name="password" value="huai0913"/>
@@ -32,4 +36,7 @@
 <!--        mapper代理的方式-->
         <package name="com.gok.daohuai.mapper"/>
     </mappers>
+
+
+
 </configuration>

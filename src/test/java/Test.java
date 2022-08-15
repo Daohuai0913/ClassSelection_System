@@ -22,7 +22,7 @@ public class Test {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
 
 //        sqlSession.getMapper(TeacherMapper.class).getTeacherById(Integer.valueOf(teacher.getTeacherId()));
 //        sqlSession.getMapper(TeacherMapper.class).getTeacherById(1);
@@ -31,8 +31,12 @@ public class Test {
 //        sqlSession.getMapper(TeacherMapper.class).getTeacherById(1);
 //        System.out.println(sqlSession.getMapper(TeacherMapper.class).getTeacherById(1).getPassword());
 //        System.out.println(sqlSession.getMapper(TeacherMapper.class).getTeacherById(1).getTeacherId());
-        sqlSession.getMapper(TeacherMapper.class).showYourClass("1");
-        System.out.println(sqlSession.getMapper(TeacherMapper.class).showYourClass("1").get(0).getClassId());
+
+
+//        sqlSession.getMapper(TeacherMapper.class).showYourClass("1");
+//        System.out.println(sqlSession.getMapper(TeacherMapper.class).showYourClass("1").get(0).getClassId());
+
+        sqlSession.getMapper(TeacherMapper.class).insertTeacher("daohuai","123","daohuai","男");
 
     }
 
